@@ -15,11 +15,12 @@ jobs:
         with:
           python-version: "3.9"
       - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: Run tests
-        run:  coverage run -m unittest -v tests/hmm_class_test.py
+        run:  coverage run -m unittest -v tests/
       - name: Upload coverage data to coveralls.io
         env:
-          GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
             pip install coveralls
             coveralls --service=github
@@ -30,5 +31,5 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
