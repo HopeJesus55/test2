@@ -3,21 +3,35 @@ from class_SV import SV, NormSV, ExpSV
 
 
 def call_exp():
-    print("Пожалуйста, введите мощность выборки:")
-    count = input()
-    count = int(count)
-    print("Пожалуйста, введите значение лямбды (обратная к среднему выборки):")
-    Lambda = input()
-    Lambda = float(Lambda)
+    while True:
+        print("Пожалуйста, введите мощность выборки:")
+        count = input()
+        count = int(count)
+        if count > 0:
+            break
+        if count <= 0:
+            print("Мощность выборки не может быть меньше или равнв нулю!!")
+    while True:
+        print("Пожалуйста, введите значение лямбды (обратная к среднему выборки):")
+        Lambda = input()
+        Lambda = float(Lambda)
+        # Может ли лямбда быть отрицательной? в теории да, но программа может генерировать только положительные числа
+        # Другой вопрос может ли она быть больше 1
+        break
     ExpRasp = ExpSV(count, Lambda)
     ExpRasp.generate_exp_rasp()
     return ExpRasp.rasp
 
 
 def call_norm():
-    print("Пожалуйста, введите мощность выборки:")
-    count = input()
-    count = int(count)
+    while True:
+        print("Пожалуйста, введите мощность выборки:")
+        count = input()
+        count = int(count)
+        if count > 0:
+            break
+        if count <= 0:
+            print("Мощность выборки не может быть меньше или равнв нулю!!")
     print("Пожалуйста, введите значение среднего выборки (Тср):")
     Tsp = input()
     Tsp = int(Tsp)
@@ -69,11 +83,15 @@ if __name__ == '__main__':
         if choice == '0':
             quit()
         elif choice == '1':
+            print("Первая выборка:", X)
+            print("Вторая выборка:", Y)
             hmc.Gaussian_model()
             hmc.check_correct_predict()
             print("\n\nСпасибо за использование данной программы!")
             break
         elif choice == '2':
+            print("Первая выборка:", X)
+            print("Вторая выборка:", Y)
             hmc.GMMHMM_model()
             hmc.check_correct_predict()
             print("\n\nСпасибо за использование данной программы!")
