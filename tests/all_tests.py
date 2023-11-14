@@ -5,6 +5,7 @@ from class_HMM import HMM
 
 class SVTest(TestCase):
     def test_init(self):
+        # TODO: добавить комментарий
         sv_obj = SV(10)
         self.assertEqual(sv_obj.count, 10)
         self.assertEqual(sv_obj.numbers, [])
